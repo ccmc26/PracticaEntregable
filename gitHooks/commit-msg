@@ -1,0 +1,17 @@
+#!/bin/sh
+# commit-msg hook
+
+# Obten el mensaje del commit
+commit_message=$(cat "$1")
+
+# Define el formato que debe tener el mensaje
+formato_correcto="^MOTIVO DEL COMMIT: .+\nIMPLEMENTACION: .+"
+
+# Comprueba si el mensaje del commit coincide con el formato
+if [[ ! $commit_message =~ $formato_correcto ]]; then
+  echo "Error: El mensaje del commit no sigue el formato correcto."
+  echo "El formato correcto es:"
+  echo "MOTIVO DEL COMMIT: <Titulo asociado al commit>"
+  echo "IMPLEMENTACION: <Explicacion del desarrollo realizado>"
+  exit 1
+fi

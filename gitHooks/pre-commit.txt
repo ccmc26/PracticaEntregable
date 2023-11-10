@@ -1,0 +1,11 @@
+#!/bin/sh
+# pre-commit hook
+
+# Ejecuta ESLint en todos los archivos .html que se van a subir
+for archivo in $(git diff --cached --name-only | grep .html$); do
+  npx eslint "$archivo"
+  if [ $? -ne 0 ]; then
+    echo "Error: ESLint encontro problemas en $archivo."
+    exit 1
+  fi
+done

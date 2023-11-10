@@ -1,0 +1,7 @@
+#!/bin/sh
+# post-checkout hook
+
+echo "Instalando dependencias del proyecto..."
+npm install
+
+echo "¡Instalacion completada!"

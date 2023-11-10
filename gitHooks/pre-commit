@@ -1,0 +1,13 @@
+#!/bin/sh
+# pre-commit hook
+
+# Define los caracteres extraños que quieres verificar
+#caracteres_extranos="áâàéèêíìîóòôúùû"
+
+# Comprueba si alguno de los archivos que se van a subir contiene caracteres extraños
+for archivo in $(git diff --cached --name-only); do
+  if grep -q [$caracteres_extranos] "$archivo"; then
+    echo "Error: El archivo $archivo contiene caracteres extraños."
+    exit 1
+  fi
+done
